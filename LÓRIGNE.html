@@ -23,7 +23,7 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    padding: 2rem 0; /* Más alto para el logo grande */
+    padding: 2rem 0;
     border-bottom: 1px solid #e5e5e5;
     position: sticky;
     top: 0;
@@ -36,12 +36,13 @@
     left: 1rem;
     top: 50%;
     transform: translateY(-50%);
-    width: 120px; /* Más grande */
+    width: 120px;
     height: 120px;
     border-radius: 50%;
-	opacity: 1; /* Máxima visibilidad */
-    filter: brightness(0) saturate(100%); /* Logo negro */
+    opacity: 1;
+    filter: brightness(0) saturate(100%);
     object-fit: cover;
+    cursor: pointer;
   }
 
   nav ul {
@@ -91,7 +92,7 @@
     display: flex;
   }
 
-  /* ----- Inicio ----- */
+  /* Inicio */
   #inicio img {
     width: 400px;
     height: 400px;
@@ -107,7 +108,7 @@
     color: #333;
   }
 
-  /* ----- Galería ----- */
+  /* Galería */
   .gallery-container {
     background: white;
     border-radius: 16px;
@@ -147,30 +148,31 @@
     background: none;
     border: none;
     font-size: 2rem;
-    color: #0ea5a4;
+    color: #000; /* Botón negro */
     cursor: pointer;
     z-index: 2;
   }
 
   #nextBtn:hover {
-    color: #08918f;
+    color: #555;
   }
 
-  /* Logo grande en esquina inferior derecha de toda la ventana */
+  /* Logo grande en esquina inferior derecha */
   .section-logo {
-    position: fixed; /* Para que esté siempre en la esquina inferior derecha */
+    position: fixed;
     bottom: 1rem;
     right: 1rem;
-    width: 150px; /* Más grande */
+    width: 150px;
     height: 150px;
     border-radius: 50%;
     object-fit: cover;
     opacity: 1;
-	filter: brightness(0) saturate(100%);
+    filter: brightness(0) saturate(100%);
     z-index: 0;
+    cursor: pointer;
   }
 
-  /* ----- Artistas ----- */
+  /* Artistas */
   #artistas h2 {
     font-family: 'Playfair Display', serif;
     color: #333;
@@ -183,13 +185,12 @@
     line-height: 1.8;
     font-size: 1rem;
   }
-
 </style>
 </head>
 <body>
 
 <header>
-  <img src="Imagenes/LOGO.png" alt="Logo de la galería">
+  <img id="logoHeader" src="Imagenes/LOGO.png" alt="Logo de la galería">
   <nav>
     <ul>
       <li><a id="linkInicio">Inicio</a></li>
@@ -209,12 +210,12 @@
   <!-- Fotografías -->
   <section id="fotografias">
     <div class="gallery-container">
-      <img id="image" src="Imagenes/LAPIZ.png" style="height: 400px;" alt="Imagen de ejemplo">
+      <img id="image" src="Imagenes/LAPIZ.jpg" style="height: 400px;" alt="Imagen de ejemplo">
       <h2 id="title">Esencia Blanca</h2>
       <p id="description">Un objeto tan simple puede crear grandes cosas</p>
       <button id="nextBtn">&gt;</button>
     </div>
-    <img class="section-logo" src="Imagenes/LOGO.png" alt="Logo sección">
+    <img class="section-logo" src="Imagenes/LOGO.png" alt="Logo sección" id="logoFoto">
   </section>
 
   <!-- Artistas -->
@@ -225,7 +226,7 @@
       Jorge Emilio Téllez Mijares<br>
       Jeshua David Rogel Rodríguez
     </div>
-    <img class="section-logo" src="Imagenes/LOGO.png" alt="Logo sección">
+    <img class="section-logo" src="Imagenes/LOGO.png" alt="Logo sección" id="logoArtistas">
   </section>
 </main>
 
@@ -249,13 +250,18 @@
   linkFotografias.addEventListener("click", () => showSection(fotografias));
   linkArtistas.addEventListener("click", () => showSection(artistas));
 
+  // Logos clicables vuelven al inicio
+  document.getElementById("logoHeader").addEventListener("click", () => showSection(inicio));
+  document.getElementById("logoFoto").addEventListener("click", () => showSection(inicio));
+  document.getElementById("logoArtistas").addEventListener("click", () => showSection(inicio));
+
   // Galería solo manual
   const images = [
-    { src: "Imagenes/LAPIZ.png", title: "Esencia Blanca", description: "Un objeto tan simple puede crear grandes cosas", height: "400px" },
-    { src: "Imagenes/HOJA.png", title: "Imperfecta", description: "Una hoja marcada habla mas que 1000 perfectas", height: "640px" },
-    { src: "Imagenes/MANZANA.png", title: "El Reflejo", description: "Lo Perfecto No Siempre Está Al Frente, Detrás, La Perfección Espera En Silencio", height: "640px" },
-    { src: "Imagenes/TAZA.png", title: "El Ciclo De La Depresión", description: "Vaciarse. Llenarse. Volver A Empezar.", height: "750px" },
-    { src: "Imagenes/OREO.png", title: "Fragmento", description: "Un Pedazo Basta Para Contar Una Historia., El Final También Puede Ser Comienzo.", height: "640px" }
+    { src: "Imagenes/LAPIZ.jpg", title: "Esencia Blanca", description: "Un objeto tan simple puede crear grandes cosas", height: "400px" },
+    { src: "Imagenes/HOJA.jpg", title: "Imperfecta", description: "Una hoja marcada habla mas que 1000 perfectas", height: "640px" },
+    { src: "Imagenes/MANZANA.jpg", title: "El Reflejo", description: "Lo Perfecto No Siempre Está Al Frente, Detrás, La Perfección Espera En Silencio", height: "640px" },
+    { src: "Imagenes/TAZA.jpg", title: "El Ciclo De La Depresión", description: "Vaciarse. Llenarse. Volver A Empezar.", height: "750px" },
+    { src: "Imagenes/OREO.jpg", title: "Fragmento", description: "Un Pedazo Basta Para Contar Una Historia., El Final También Puede Ser Comienzo.", height: "640px" }
   ];
 
   let current = 0;
@@ -282,4 +288,3 @@
 
 </body>
 </html>
-
