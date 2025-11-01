@@ -23,7 +23,7 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    padding: 2rem 0; /* Más alto para el logo grande */
+    padding: 2rem 0;
     border-bottom: 1px solid #e5e5e5;
     position: sticky;
     top: 0;
@@ -36,12 +36,13 @@
     left: 1rem;
     top: 50%;
     transform: translateY(-50%);
-    width: 120px; /* Más grande */
+    width: 120px;
     height: 120px;
     border-radius: 50%;
-	opacity: 1; /* Máxima visibilidad */
-    filter: brightness(0) saturate(100%); /* Logo negro */
+    opacity: 1;
+    filter: brightness(0) saturate(100%);
     object-fit: cover;
+    cursor: pointer;
   }
 
   nav ul {
@@ -91,7 +92,7 @@
     display: flex;
   }
 
-  /* ----- Inicio ----- */
+  /* Inicio */
   #inicio img {
     width: 400px;
     height: 400px;
@@ -107,7 +108,7 @@
     color: #333;
   }
 
-  /* ----- Galería ----- */
+  /* Galería */
   .gallery-container {
     background: white;
     border-radius: 16px;
@@ -147,30 +148,31 @@
     background: none;
     border: none;
     font-size: 2rem;
-    color: #0ea5a4;
+    color: #000; /* Botón negro */
     cursor: pointer;
     z-index: 2;
   }
 
   #nextBtn:hover {
-    color: #08918f;
+    color: #555;
   }
 
-  /* Logo grande en esquina inferior derecha de toda la ventana */
+  /* Logo grande en esquina inferior derecha */
   .section-logo {
-    position: fixed; /* Para que esté siempre en la esquina inferior derecha */
+    position: fixed;
     bottom: 1rem;
     right: 1rem;
-    width: 150px; /* Más grande */
+    width: 150px;
     height: 150px;
     border-radius: 50%;
     object-fit: cover;
     opacity: 1;
-	filter: brightness(0) saturate(100%);
+    filter: brightness(0) saturate(100%);
     z-index: 0;
+    cursor: pointer;
   }
 
-  /* ----- Artistas ----- */
+  /* Artistas */
   #artistas h2 {
     font-family: 'Playfair Display', serif;
     color: #333;
@@ -183,13 +185,12 @@
     line-height: 1.8;
     font-size: 1rem;
   }
-
 </style>
 </head>
 <body>
 
 <header>
-  <img src="Imagenes/LOGO.png" alt="Logo de la galería">
+  <img id="logoHeader" src="Imagenes/LOGO.png" alt="Logo de la galería">
   <nav>
     <ul>
       <li><a id="linkInicio">Inicio</a></li>
@@ -214,7 +215,7 @@
       <p id="description">Un objeto tan simple puede crear grandes cosas</p>
       <button id="nextBtn">&gt;</button>
     </div>
-    <img class="section-logo" src="Imagenes/LOGO.png" alt="Logo sección">
+    <img class="section-logo" src="Imagenes/LOGO.png" alt="Logo sección" id="logoFoto">
   </section>
 
   <!-- Artistas -->
@@ -225,7 +226,7 @@
       Jorge Emilio Téllez Mijares<br>
       Jeshua David Rogel Rodríguez
     </div>
-    <img class="section-logo" src="Imagenes/LOGO.png" alt="Logo sección">
+    <img class="section-logo" src="Imagenes/LOGO.png" alt="Logo sección" id="logoArtistas">
   </section>
 </main>
 
@@ -248,6 +249,11 @@
   linkInicio.addEventListener("click", () => showSection(inicio));
   linkFotografias.addEventListener("click", () => showSection(fotografias));
   linkArtistas.addEventListener("click", () => showSection(artistas));
+
+  // Logos clicables vuelven al inicio
+  document.getElementById("logoHeader").addEventListener("click", () => showSection(inicio));
+  document.getElementById("logoFoto").addEventListener("click", () => showSection(inicio));
+  document.getElementById("logoArtistas").addEventListener("click", () => showSection(inicio));
 
   // Galería solo manual
   const images = [
@@ -282,4 +288,3 @@
 
 </body>
 </html>
-
